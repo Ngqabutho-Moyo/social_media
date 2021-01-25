@@ -1,6 +1,6 @@
 from flask import Flask, g, render_template, flash, redirect, url_for
-from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
-from flask.ext.bcrypt import check_password_hash
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from flask_bcrypt import check_password_hash
 
 import models
 import forms
@@ -58,15 +58,14 @@ def login():
   if form.validate_on_submit():
     try:
       user = models.User.get(models.User.email == form.email.data)
-    except models.DoesNotExist:
-      flash("Your email or password don't match", "error")
-  else:
       if check_password_hash(user.password, form.password.data):
         login_user(user)
         flash('Logged in successfully', 'success')
         return redirect(url_for('index'))
-      else:
-        flash("Your email or password doesn't match", "error")
+    except models.DoesNotExist:
+      flash("Your email or password don't match", "error")
+  else:
+    flash("Your email or password doesn't match", "error")
   return render_template('login.html', form=form)
 
 
