@@ -23,7 +23,7 @@
       <div class="row">
         <div class="u-full-width">
           <nav class="menu">
-            {% if current_user.is_authenticated() %}
+            {% if current_user.is_authenticated %}
               <a href="{{ url_for('logout') }}" title="Log out">Log Out</a>
               <a href="{{ url_for('taco') }}" title="Create taco">Create Taco</a>
             {% else %}
