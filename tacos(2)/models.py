@@ -1,6 +1,6 @@
 import datetime
-from flask.ext.login import UserMixin
-from flask.ext.bcrypt import generate_password_hash
+from flask_login import UserMixin
+from flask_bcrypt import generate_password_hash
 
 from peewee import *
 
@@ -36,7 +36,7 @@ class Taco(Model):
   shell = CharField()
   cheese = BooleanField(default=True)
   extras = TextField()
-  user = ForeignKeyField(rel_model=User, related_name='tacos')
+  user = ForeignKeyField(model=User, related_name='tacos')
   
   class Meta:
     database = DATABASE 
