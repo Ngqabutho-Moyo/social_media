@@ -15,12 +15,15 @@
           <tbody>
         {% for taco in tacos %}
             <tr>
-              <!-- taco attributes here -->
+             {{taco.shell}}
+              {{taco.protein}}
+              {{taco.cheese}}
+              {{taco.extras}}
             </tr>
         {% endfor %}
           </tbody>
         </table>
     {% else %}
-        <!-- message for missing tacos -->
+        <p>No tacos yet</p>
     {% endif %}
 {% endblock %}
